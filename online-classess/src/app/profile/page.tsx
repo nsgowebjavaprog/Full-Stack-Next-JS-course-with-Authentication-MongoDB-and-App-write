@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export default function ProfilePage() {
   const router = useRouter();
   const [data, setData] = useState("nothing");
+
   const logout = async () => {
     try {
       await axios.get("/api/users/logout");
@@ -26,31 +27,42 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>Profile</h1>
-      <hr />
-      <p>Profile page</p>
-      <h2 className="p-1 rounded bg-green-500">
-        {data === "nothing" ? (
-          "Nothing"
-        ) : (
-          <Link href={`/profile/${data}`}>{data}</Link>
-        )}
-      </h2>
-      <hr />
-      <button
-        onClick={logout}
-        className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-100 to-gray-200">
+      <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md text-center">
+        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+          👤 Profile Page
+        </h1>
+        <p className="text-gray-600 mb-6">Welcome to your profile</p>
 
-      <button
-        onClick={getUserDetails}
-        className="bg-green-800 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        GetUser Details
-      </button>
+        <div className="mb-4">
+          <h2 className="text-sm font-semibold text-gray-500">User ID:</h2>
+          <p className="mt-2 p-2 bg-green-100 rounded text-green-800 break-all">
+            {data === "nothing" ? (
+              "No user data available"
+            ) : (
+              <Link href={`/profile/${data}`} className="hover:underline">
+                {data}
+              </Link>
+            )}
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-4 mt-6">
+          <button
+            onClick={getUserDetails}
+            className="w-full bg-green-600 hover:bg-green-700 transition text-white py-2 px-4 rounded-lg font-semibold"
+          >
+            🔍 Get User Details
+          </button>
+
+          <button
+            onClick={logout}
+            className="w-full bg-red-500 hover:bg-red-600 transition text-white py-2 px-4 rounded-lg font-semibold"
+          >
+            🚪 Logout
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
