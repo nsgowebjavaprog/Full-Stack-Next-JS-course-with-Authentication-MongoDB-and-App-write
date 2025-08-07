@@ -27,7 +27,9 @@ FrontEnd -- Page
 -----------------------------------------------------
 1. In scr create models, helpers folder
 2. Inside app --> login
-3. 
+3. Each route ===> Each Folder
+
+naming and placing fil and folder in correct place is more imp in Next-JS
 -----------------------------------------------------
 
 
